@@ -1,0 +1,102 @@
+name: "Main Check Project Updates"
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra-as-code/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'infra-as-code/**'
+
+jobs:
+
+
+
+  terraform-plan:
+    name: Terraform Plan
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ENV: dev
+    outputs:
+      plan-status: ${{ env.PLAN_STATUS }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN}}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Initialize Terraform
+        id: init
+        run: cd infra-as-code && terraform init --backend-config="bucket=467449736571-jaguero-belcorp-0002-demo-belde-s3-template"
+
+      - name: Validate syntax Terraform
+        id: validate
+        run: |
+          cd infra-as-code
+          terraform validate -no-color
+          terraform workspace select $ENV || terraform workspace new $ENV
+
+      - name: Terraform Plan
+        id: plan
+        run: cd infra-as-code && terraform plan -out plan.tfplan
+        continue-on-error: true
+
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: |
+          echo "PLAN_STATUS=failure" >> "$GITHUB_ENV"
+          exit 1
+
+      - name: Set Terraform Plan Status
+        run: echo "PLAN_STATUS=success" >> "$GITHUB_ENV"
+
+  terraform-apply:
+    name: Terraform Apply
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: read
+    needs:
+      - terraform-plan
+    env:
+      PLAN_STATUS: ${{ needs.terraform-plan.outputs.plan-status }}
+      ENV: dev
+    steps:
+      - name: Check Terraform Plan Status
+        if: env.PLAN_STATUS != 'success'
+        run: |
+          echo "The given Terraform plan is not valid"
+          exit 1
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN}}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Initialize Terraform
+        id: init
+        run: cd infra-as-code && terraform init --backend-config="bucket=467449736571-jaguero-belcorp-0002-demo-belde-s3-template"
+
+      - name: Terraform Apply
+        run: |
+          cd infra-as-code
+          terraform workspace select $ENV
+          terraform plan
+          terraform apply -auto-approve -input=false
+      #################################################
+      # call workflow code analysis sonarqube
+      #################################################
