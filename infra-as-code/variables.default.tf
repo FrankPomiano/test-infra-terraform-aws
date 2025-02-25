@@ -60,27 +60,27 @@ variable "PUBLIC_SUBNET_1B_CIDR_BLOCKS" {
 variable "CERTIFICATE_ARN" {
   type = map(string)
   default = {
-    dev = "arn:aws:acm:us-east-2:467449736571:certificate/c147df75-454f-47a6-9fab-2030bd8bb436"
-    qa  = "arn:aws:acm:us-east-2:467449736571:certificate/c147df75-454f-47a6-9fab-2030bd8bb436"
-    stg = "arn:aws:acm:us-east-2:467449736571:certificate/c147df75-454f-47a6-9fab-2030bd8bb436"
-    prd = "arn:aws:acm:us-east-2:467449736571:certificate/c147df75-454f-47a6-9fab-2030bd8bb436"
+    dev = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
+    qa  = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
+    stg = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
+    prd = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
   }
 }
 variable "ROUTE_53_ZONE_ID" {
   type = map(string)
   default = {
-    dev = "Z089877918TRRM7NB7B43"
-    qa  = "Z089877918TRRM7NB7B43"
-    stg = "Z089877918TRRM7NB7B43"
-    prd = "Z089877918TRRM7NB7B43"
+    dev = "Z0060444W0LEND70FDJI"
+    qa  = "Z0060444W0LEND70FDJI"
+    stg = "Z0060444W0LEND70FDJI"
+    prd = "Z0060444W0LEND70FDJI"
   }
 }
 variable "DOMAIN_NAME_BACKEND" {
   type = map(string)
   default = {
-    dev = "api.demobeolcorp.applying.cloud"
-    qa  = "api.demobeolcorp.applying.cloud"
-    stg = "api.demobeolcorp.applying.cloud"
-    prd = "api.demobeolcorp.applying.cloud"
+    dev = "api.testfpmbelcorp.applying.cloud"
+    qa  = "api.testfpmbelcorp.applying.cloud"
+    stg = "api.testfpmbelcorp.applying.cloud"
+    prd = "api.testfpmbelcorp.applying.cloud"
   }
 }
