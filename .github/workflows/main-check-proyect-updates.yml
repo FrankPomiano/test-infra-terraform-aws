@@ -37,7 +37,7 @@ jobs:
 
       - name: Initialize Terraform
         id: init
-        run: cd infra-as-code && terraform init --backend-config="bucket=467449736571-fpomiano-belcorp-0001-demo-belde-s3-template"
+        run: cd infra-as-code && terraform init --backend-config="bucket=467449736571-fpomiano-belcorp-0002-demo-belde-s3-template"
 
       - name: Validate syntax Terraform
         id: validate
@@ -89,7 +89,7 @@ jobs:
 
       - name: Initialize Terraform
         id: init
-        run: cd infra-as-code && terraform init --backend-config="bucket=467449736571-fpomiano-belcorp-0001-demo-belde-s3-template"
+        run: cd infra-as-code && terraform init --backend-config="bucket=467449736571-fpomiano-belcorp-0002-demo-belde-s3-template"
 
       - name: Terraform Apply
         run: |

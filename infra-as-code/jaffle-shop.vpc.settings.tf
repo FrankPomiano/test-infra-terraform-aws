@@ -31,7 +31,7 @@ module "private_subnet_1a" {
   RESOURCE_SUFFIX   = "private-1"
   AWS_TAGS          = merge(var.AWS_TAGS, tomap({ "Type" = "private" }))
   VPC_ID            = module.base-vpc.id
-  AVAILABILITY_ZONE = "us-east-2a"
+  AVAILABILITY_ZONE = "us-west-1a"
   CIDR_BLOCK        = var.PRIVATE_SUBNET_1A_CIDR_BLOCKS[local.ENV]
 }
 
@@ -42,7 +42,7 @@ module "private_subnet_1b" {
   RESOURCE_SUFFIX   = "private-2"
   AWS_TAGS          = merge(var.AWS_TAGS, tomap({ "Type" = "private" }))
   VPC_ID            = module.base-vpc.id
-  AVAILABILITY_ZONE = "us-east-2b"
+  AVAILABILITY_ZONE = "us-west-1b"
   CIDR_BLOCK        = var.PRIVATE_SUBNET_1B_CIDR_BLOCKS[local.ENV]
 }
 
@@ -82,7 +82,7 @@ module "public_subnet_1a" {
   RESOURCE_SUFFIX   = "public-1"
   AWS_TAGS          = merge(var.AWS_TAGS, tomap({ "Type" = "public" }))
   VPC_ID            = module.base-vpc.id
-  AVAILABILITY_ZONE = "us-east-2a"
+  AVAILABILITY_ZONE = "us-west-1a"
   CIDR_BLOCK        = var.PUBLIC_SUBNET_1A_CIDR_BLOCKS[local.ENV]
 }
 module "public_subnet_1b" {
@@ -92,7 +92,7 @@ module "public_subnet_1b" {
   RESOURCE_SUFFIX   = "public-2"
   AWS_TAGS          = merge(var.AWS_TAGS, tomap({ "Type" = "public" }))
   VPC_ID            = module.base-vpc.id
-  AVAILABILITY_ZONE = "us-east-2b"
+  AVAILABILITY_ZONE = "us-west-1b"
   CIDR_BLOCK        = var.PUBLIC_SUBNET_1B_CIDR_BLOCKS[local.ENV]
 }
 

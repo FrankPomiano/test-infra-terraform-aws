@@ -26,7 +26,7 @@ variable "RESOURCE_SUFFIX" {
 
 variable "AWS_REGION" {
   description = "AWS Region"
-  default     = "us-east-2"
+  default     = "us-west-1"
 }
 
 variable "AWS_TAGS" {

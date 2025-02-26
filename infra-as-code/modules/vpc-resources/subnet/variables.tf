@@ -41,5 +41,5 @@ variable "AVAILABILITY_ZONE" {
     tolerance and high availability for resources.
   EOF
   type        = string
-  default     = "us-east-2a"
+  default     = "us-west-1a"
 }

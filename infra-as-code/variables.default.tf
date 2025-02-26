@@ -60,10 +60,10 @@ variable "PUBLIC_SUBNET_1B_CIDR_BLOCKS" {
 variable "CERTIFICATE_ARN" {
   type = map(string)
   default = {
-    dev = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
-    qa  = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
-    stg = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
-    prd = "arn:aws:acm:us-east-2:467449736571:certificate/6a62d513-984a-4c2e-996d-b0f1583c4f7f"
+    dev = "arn:aws:acm:us-west-1:467449736571:certificate/18ace870-e4e8-4e15-b486-c55e70eb9f14"
+    qa  = "arn:aws:acm:us-west-1:467449736571:certificate/18ace870-e4e8-4e15-b486-c55e70eb9f14"
+    stg = "arn:aws:acm:us-west-1:467449736571:certificate/18ace870-e4e8-4e15-b486-c55e70eb9f14"
+    prd = "arn:aws:acm:us-west-1:467449736571:certificate/18ace870-e4e8-4e15-b486-c55e70eb9f14"
   }
 }
 variable "ROUTE_53_ZONE_ID" {

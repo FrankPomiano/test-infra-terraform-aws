@@ -2,7 +2,7 @@ data "aws_region" "current_region" {}
 data "aws_caller_identity" "current" {}
 
 locals {
-  PROJECT_NAME   = "belcorp-0000-demo"
+  PROJECT_NAME   = "belcorp-0001-demo-fpm"
   ENV            = terraform.workspace
   AWS_REGION     = data.aws_region.current_region.name
   AWS_TAGS       = merge(var.AWS_TAGS, tomap({ "Environment" = terraform.workspace }))

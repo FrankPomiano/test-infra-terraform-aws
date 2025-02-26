@@ -10,7 +10,7 @@ terraform {
   backend "s3" {
     key     = "gpassos-jaffle-shop/terraform.tfstate"
     encrypt = true
-    region = "us-east-2"
+    region = "us-west-1"
   }
 
 
@@ -19,5 +19,5 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-2"
+  region = "us-west-1"
 }
