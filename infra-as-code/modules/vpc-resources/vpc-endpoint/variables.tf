@@ -52,3 +52,4 @@ variable "PRIVATE_DNS_ENABLED" {
   default     = false
   type        = bool
 }
+
