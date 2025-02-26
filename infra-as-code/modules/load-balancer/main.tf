@@ -15,7 +15,7 @@ resource "aws_lb" "application-load-balancer" {
   load_balancer_type = "application"
   security_groups    = [var.SECURITY_GROUP_ID]
   subnets            = [for subnet in var.SUBNET_PUBLICS : subnet]
-  enable_deletion_protection = true
+  enable_deletion_protection = false
   tags = merge(var.AWS_TAGS, {
     Name = local.RESOURCE_NAME
   })
