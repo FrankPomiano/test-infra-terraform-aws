@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   requires_compatibilities = ["FARGATE"]
   tags                     = var.AWS_TAGS
   runtime_platform {
-    operating_system_family = "WINDOWS_SERVER_2022_CORE"
+    operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
   container_definitions    = <<EOF
