@@ -95,6 +95,20 @@ module "ecs-task-definition" {
   APP_ENVIRONMENTS_VARS = [{ "name" = "APP_PARAMS_PREFIX", "value" = module.ssm-parameters-store-app.parameter_name_net }]
 }
 
+module "ecs-services" {
+  source              = "./modules/ecs-services"
+  ENV                 = local.ENV
+  PROJECT_NAME        = local.PROJECT_NAME
+  AWS_TAGS            = local.AWS_TAGS
+  RESOURCE_SUFFIX     = "demonet"
+  SUBNET_PRIVATES     = [module.private_subnet_1a.id,module.private_subnet_1b.id] # 2 subnets in different AZs
+  SECURITY_GROUP_ID   = module.services-security-group.id
+  ECS_CLUSTER_ARN = module.ecs-cluster-for-dbt.arn
+  ECS_TASK_DEFINITION_ARN = module.ecs-task-definition.task-definition-arn
+  CONTAINER_NAME = module.ecs-task-definition.task-definition-container-name
+  ALB_TARGET_GROUP_ARN = module.load-balancer.target_groups
+}
+
 module "services-security-group" {
   source                     = "./modules/vpc-resources/security-group"
   PROJECT_NAME               = local.PROJECT_NAME
